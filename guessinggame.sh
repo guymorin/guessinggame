@@ -2,11 +2,10 @@
 # File : guessinggame.sh
 nb=$(ls -A|wc -l)
 clear
-function again
-{
+function again {
 	echo "> Try again"
 }
-while [ -z $end ]
+while [[ $try -ne $nb ]]
 do
 	read -p "Guess the number of files in the current directory:" try
 	if [[ $try =~ ^[0-9]+$ ]]
@@ -19,12 +18,9 @@ do
 		then
 			echo "> Too low!"
 			again
-		elif [ $try -eq $nb ]
-		then
-			echo "> Congratulations! $try is the correct number!"
-			end=true
 		fi
-	else 
+	else
 		echo "> Please type a number"
 	fi
 done
+echo "> Congratulations! $try is the correct number!"
