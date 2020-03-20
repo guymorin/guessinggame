@@ -5,7 +5,7 @@ clear
 function again {
 	echo "> Try again"
 }
-while [[ $try -ne $nb ]]
+while [ -v $end ]
 do
 	read -p "Guess the number of files in the current directory:" try
 	if [[ $try =~ ^[0-9]+$ ]]
@@ -18,9 +18,12 @@ do
 		then
 			echo "> Too low!"
 			again
+		elif [ $try -eq $nb ]
+		then
+			echo "> Congratulations! $try is the correct number!"
+			end=true
 		fi
 	else
 		echo "> Please type a number"
 	fi
 done
-echo "> Congratulations! $try is the correct number!"
